@@ -45,7 +45,7 @@ import java.util.jar.JarFile;
  * the class name. Cross-platform issues made it easier to put into a small java
  * application rather than have to install Cygwin on every Windows box I use.
  * 
- * Copyright (C) 2004-2006 Scott Dunbar (scott@xigole.com)
+ * Copyright (C) 2004-2015 Scott Dunbar (scott@xigole.com)
  * <p>
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
