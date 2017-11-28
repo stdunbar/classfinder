@@ -54,7 +54,7 @@ ClassFinder uses a standard Maven build file.  Just run
 to generate classfinder.jar
 
 ## Copyright
-Copyright (C) 2004-2015 Scott Dunbar (scott@xigole.com)
+Copyright (C) 2004-2017 Scott Dunbar (scott@xigole.com)
 
 Licensed under the Apache License, Version 2.0 (the "License"); you may not
 use this file except in compliance with the License. You may obtain a copy
