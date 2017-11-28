@@ -7,7 +7,7 @@
     <groupId>com.xigole</groupId>
     <modelVersion>4.0.0</modelVersion>
     <artifactId>classfinder</artifactId>
-    <version>1.0.0</version>
+    <version>1.2.0</version>
     <description>Xigole Classfinder</description>
     <packaging>jar</packaging>
 
@@ -29,7 +29,6 @@
                 </configuration>
             </plugin>
 
-
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-jar-plugin</artifactId>
@@ -39,10 +38,11 @@
                         <manifest>
                             <mainClass>com.xigole.util.ClassFinder</mainClass>
                             <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
+                            <addDefaultSpecificationEntries>true</addDefaultSpecificationEntries>
                         </manifest>
                     </archive>
                 </configuration>
-</plugin>
+            </plugin>
 
         </plugins>
     </build>

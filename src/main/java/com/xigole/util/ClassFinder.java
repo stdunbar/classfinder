@@ -45,7 +45,7 @@ import java.util.jar.JarFile;
  * the class name. Cross-platform issues made it easier to put into a small java
  * application rather than have to install Cygwin on every Windows box I use.
  * 
- * Copyright (C) 2004-2015 Scott Dunbar (scott@xigole.com)
+ * Copyright (C) 2004-2017 Scott Dunbar (scott@xigole.com)
  * <p>
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
@@ -92,12 +92,10 @@ public class ClassFinder {
      * Public constructor that expects to be given the argument array from the
      * command line.
      * 
-     * @param argv
-     *            - an array of Strings from the command line.
+     * @param argv - an array of Strings from the command line.
      * 
-     * @throws an
-     *             IllegalArgumentException if the command line is invalid or if
-     *             the directory name specified is not really a directory.
+     * @throws IllegalArgumentException if the command line is invalid or if
+     *         the directory name specified is not really a directory.
      * 
      */
     public ClassFinder(String argv[]) throws IllegalArgumentException {
@@ -128,18 +126,17 @@ public class ClassFinder {
 
         buildFileList(directory);
 
-        for (int i = 0; i < files.size(); i++) {
-            File nextFile = (File) (files.get(i));
-            JarFile nextJarFile = null;
+        for( File nextFile: files ) {
+            JarFile nextJarFile;
 
             if (nextFile.getAbsolutePath().toLowerCase().endsWith(".class")) {
                 boolean found = false;
 
                 if (ignoreCase) {
-                    if (nextFile.getAbsolutePath().toLowerCase().indexOf(classNameToCompare) != -1)
+                    if (nextFile.getAbsolutePath().toLowerCase().contains(classNameToCompare))
                         found = true;
                 } else {
-                    if (nextFile.getAbsolutePath().indexOf(classNameToCompare) != -1)
+                    if (nextFile.getAbsolutePath().contains(classNameToCompare))
                         found = true;
                 }
 
@@ -168,10 +165,10 @@ public class ClassFinder {
                 JarEntry nextEntry = jarEntries.nextElement();
 
                 if (ignoreCase) {
-                    if (nextEntry.getName().toLowerCase().indexOf(classNameToCompare) != -1)
+                    if (nextEntry.getName().toLowerCase().contains(classNameToCompare))
                         found = true;
                 } else {
-                    if (nextEntry.getName().indexOf(classNameToCompare) != -1)
+                    if (nextEntry.getName().contains(classNameToCompare))
                         found = true;
                 }
 
@@ -208,17 +205,18 @@ public class ClassFinder {
         File[] fileList = nextFile.listFiles();
 
         if (fileList != null) {
-            for (int i = 0; i < fileList.length; i++) {
-                if (fileList[i].isDirectory()) {
-                    buildFileList(fileList[i]);
+            for( File nextFileToTest: fileList) {
+                if (nextFileToTest.isDirectory()) {
+                    buildFileList(nextFileToTest);
                 }
 
-                if (fileList[i].getName().toLowerCase().endsWith(".jar") || fileList[i].getName().toLowerCase().endsWith(".war")
-                        || fileList[i].getName().toLowerCase().endsWith(".rar")
-                        || fileList[i].getName().toLowerCase().endsWith(".ear")
-                        || fileList[i].getName().toLowerCase().endsWith(".class")) {
-                    if (!fileList[i].isDirectory())
-                        files.add(fileList[i]);
+                if (nextFileToTest.getName().toLowerCase().endsWith(".jar")
+                        || nextFileToTest.getName().toLowerCase().endsWith(".war")
+                        || nextFileToTest.getName().toLowerCase().endsWith(".rar")
+                        || nextFileToTest.getName().toLowerCase().endsWith(".ear")
+                        || nextFileToTest.getName().toLowerCase().endsWith(".class")) {
+                    if (!nextFileToTest.isDirectory())
+                        files.add(nextFileToTest);
                 }
             }
         }
@@ -288,6 +286,6 @@ public class ClassFinder {
     private void usage() {
         System.err.println("usage: java " + getClass().getName() + " -d <dir_name> -c <class_name> [-p] [-v]");
         System.err.println("ClassFinder v" + ClassFinder.class.getPackage().getImplementationVersion()
-                + " copyright (c) 2015 Scott Dunbar");
+                + " copyright (c) 2017 Scott Dunbar");
     }
 }
